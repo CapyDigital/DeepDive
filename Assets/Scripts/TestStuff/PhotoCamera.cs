@@ -7,14 +7,26 @@ public class PhotoCamera : MonoBehaviour
     [SerializeField] private Image      _photoDisplayArea;
     [SerializeField] private GameObject _photoFrame;
     [SerializeField] private Animator   _photoDisplayAnimator;
+    [SerializeField] private Transform  _camera;
+    [SerializeField] private LayerMask  _fishLayerMask;
 
     private Texture2D   _screenCapture;
+    private TaskManager _taskManager;
     private bool        _displayingPhoto;
+
+
+    [SerializeField] private Renderer _fishRenderer;
+    [SerializeField] private Camera  _photoCam;
 
     private void Awake()
     {
         _screenCapture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
         _displayingPhoto = false;
+    }
+
+    private void Start()
+    {
+        _taskManager = FindObjectOfType<TaskManager>();
     }
 
     private void Update()
@@ -24,7 +36,11 @@ public class PhotoCamera : MonoBehaviour
             if (_displayingPhoto)
                 HidePhoto();
             else
+            {
                 StartCoroutine(TakePhoto()); 
+
+                _taskManager.CheckPhotoFish();
+            }      
         }
         
     }
@@ -58,5 +74,22 @@ public class PhotoCamera : MonoBehaviour
     {
         _displayingPhoto = false;
         _photoFrame.SetActive(false);
+    }
+
+    private void CheckForFish()
+    {
+        // _photoHits = null;
+
+        // _photoHits = Physics.BoxCastAll(_camera.position, Vector3.one * 1.9f,
+        //     _camera.forward, _camera.rotation, Mathf.Infinity, _fishLayerMask);
+        
+        // if (_photoHits.Length > 0)
+        // {
+        //     Debug.Log($"Hit fish | {_photoHits.Length}");
+        // }   
+        // else
+        //     Debug.Log("Didn't hit fish");
+
+
     }
 }
