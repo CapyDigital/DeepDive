@@ -90,4 +90,14 @@ public class TaskManager : MonoBehaviour
             Debug.Log("Tagged fish not on list to tag");
         }
     }
+
+    public void UpdateRepairPoints(RepairTask repairTask)
+    {
+        if (_repairPoints.Contains(repairTask))
+        {
+            Debug.Log("Repaired a point");
+            _repairPoints.Remove(repairTask);
+            IncreaseCompletedTaskAmount();
+        }
+    }
 }
