@@ -4,17 +4,19 @@ public class TagGun : MonoBehaviour
 {
     [SerializeField] private Transform  _bulletSpawnPoint;
     [SerializeField] private LayerMask  _gunHitLayerMask;
+    [SerializeField] private GameObject _laserSight;
 
-    private RaycastHit _bulletHit;
+    private RaycastHit  _bulletHit;
+    private TaskManager _taskManager;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
+        _taskManager = FindObjectOfType<TaskManager>();
+        //_laserSight.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    
+    private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -22,16 +24,26 @@ public class TagGun : MonoBehaviour
         }
     }
 
-    private void Shoot()
+    public void Shoot()
     {
         if (Physics.Raycast(_bulletSpawnPoint.position, _bulletSpawnPoint.forward,
             out _bulletHit, Mathf.Infinity, _gunHitLayerMask))
         {
-            if (_bulletHit.collider)
+            FishTask fish = _bulletHit.transform.GetComponent<FishTask>();
+
+            if (fish != null)
             {
-                Debug.Log(_bulletHit.collider.name);
+                _taskManager.CheckTagFish(fish.FishType);
             }
+
+
+            // if (_bulletHit.collider)
+            // {
+            //     Debug.Log(_bulletHit.collider.name);
+            // }
         }
         else Debug.Log("Didn't hit anything");
     }
+
+    public void ChangeLaserSightActiveStatus(bool status) => _laserSight.SetActive(status);
 }

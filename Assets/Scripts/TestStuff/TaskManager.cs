@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,6 +25,7 @@ public class TaskManager : MonoBehaviour
     private void IncreaseCompletedTaskAmount()
     {
         _completedTasksAmount++;
+        Debug.Log($"Tasks completed: {_completedTasksAmount}. Tasks left: {_tasksToBeCompletedAmount - _completedTasksAmount}");
         CheckLevelCompletion();
     }
 
@@ -73,6 +73,21 @@ public class TaskManager : MonoBehaviour
         if (_fishRenderersToRemove.Count > 0)
         {
             foreach (Renderer r in _fishRenderersToRemove) _fishRenderers.Remove(r);
+        }
+    }
+
+    public void CheckTagFish(FishType fishType)
+    {
+        if (_fishToTag.Contains(fishType))
+        {
+            Debug.Log($"Tagged fish. There are {_fishToTag.Count} fish left to tag.");
+            _fishToTag.Remove(fishType);
+            
+            IncreaseCompletedTaskAmount();
+        }
+        else
+        {
+            Debug.Log("Tagged fish not on list to tag");
         }
     }
 }

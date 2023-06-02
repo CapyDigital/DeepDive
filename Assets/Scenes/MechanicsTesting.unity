@@ -515,6 +515,7 @@ MonoBehaviour:
   _gunHitLayerMask:
     serializedVersion: 2
     m_Bits: 65
+  _laserSight: {fileID: 0}
 --- !u!1 &351147429
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,6 +596,7 @@ GameObject:
   - component: {fileID: 424127339}
   - component: {fileID: 424127338}
   - component: {fileID: 424127337}
+  - component: {fileID: 424127340}
   m_Layer: 0
   m_Name: Cube (2)
   m_TagString: Untagged
@@ -680,6 +682,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 424127335}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &424127340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424127335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccea0a3e46a62b543b90c433ad2bb71b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _taskType: 1
+  _fishType: {fileID: 11400000, guid: d6814013a4899744e953c9f6cea2ec37, type: 2}
 --- !u!1 &530691118
 GameObject:
   m_ObjectHideFlags: 0
@@ -2040,7 +2056,8 @@ MonoBehaviour:
   _fishToPhotograph:
   - {fileID: 11400000, guid: d6814013a4899744e953c9f6cea2ec37, type: 2}
   - {fileID: 11400000, guid: 2cc6d26de8e3fa441845ff076c1b3c35, type: 2}
-  _fishToTag: []
+  _fishToTag:
+  - {fileID: 11400000, guid: d6814013a4899744e953c9f6cea2ec37, type: 2}
   _repairPoints: []
   _fishRenderers:
   - {fileID: 530691121}
