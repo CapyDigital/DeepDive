@@ -79,7 +79,7 @@ public class TaskManager : MonoBehaviour
                             {
                                 _fishToPhotograph.Remove(task.FishType);
                                 _fishRenderersToRemove.Add(r);
-                                task.UpdateTaskProgress();
+                                task.CompleteTask();
                                 
                                 Debug.Log("Fish wasn't yet photographed. +1 task completed." +
                                     $"There are {_fishToPhotograph.Count} fish left to photograph");

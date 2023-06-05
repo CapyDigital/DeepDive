@@ -20,7 +20,7 @@ public class RepairTask : Task
         _taskManager = FindObjectOfType<TaskManager>();
     }
 
-    public void Repair()
+    public override void CompleteTask()
     {
         _meshRenderer.material = _repairedMaterial;
         _taskManager.UpdateRepairPoints(this);

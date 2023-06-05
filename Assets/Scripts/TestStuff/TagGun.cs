@@ -43,7 +43,7 @@ public class TagGun : MonoBehaviour
                 foreach (FishTask task in fishTasks)
                 {
                     if (task.TaskType == TaskType.TAG && _taskManager.CheckTagFish(task.FishType))
-                        task.UpdateTaskProgress();
+                        task.CompleteTask();
                 }
             }
 

@@ -30,7 +30,7 @@ public class RepairTorch : MonoBehaviour
                 if (aux != null)
                 {
                     Debug.Log("Repair point was hit trigger");
-                    aux.Repair();
+                    aux.CompleteTask();
                 }
                 else Debug.Log("Hit something that is not repair point");
             }
