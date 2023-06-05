@@ -6,22 +6,22 @@ public class PhotoCamera : MonoBehaviour
 {
     [SerializeField] private Image      _photoDisplayArea;
     [SerializeField] private GameObject _photoFrame;
+    [SerializeField] private GameObject _photoCameraOverlay;
     [SerializeField] private Animator   _photoDisplayAnimator;
-    [SerializeField] private Transform  _camera;
+    [SerializeField] private Camera     _camera;
     [SerializeField] private LayerMask  _fishLayerMask;
+    [SerializeField] private float      _photoCameraFov = 30.0f;
 
     private Texture2D   _screenCapture;
     private TaskManager _taskManager;
     private bool        _displayingPhoto;
 
-
-    [SerializeField] private Renderer _fishRenderer;
-    [SerializeField] private Camera  _photoCam;
-
     private void Awake()
     {
         _screenCapture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
         _displayingPhoto = false;
+
+        _camera.fieldOfView = 30.0f;
     }
 
     private void Start()
@@ -47,6 +47,7 @@ public class PhotoCamera : MonoBehaviour
 
     private IEnumerator TakePhoto()
     {
+        _photoCameraOverlay.SetActive(false);
         _displayingPhoto = true;
 
         yield return new WaitForEndOfFrame();
@@ -72,24 +73,20 @@ public class PhotoCamera : MonoBehaviour
 
     private void HidePhoto()
     {
+        _photoCameraOverlay.SetActive(true);
         _displayingPhoto = false;
         _photoFrame.SetActive(false);
     }
 
-    private void CheckForFish()
+    public void GrabCamera()
     {
-        // _photoHits = null;
+        _photoCameraOverlay.SetActive(true);
+        _camera.fieldOfView = _photoCameraFov;
+    }
 
-        // _photoHits = Physics.BoxCastAll(_camera.position, Vector3.one * 1.9f,
-        //     _camera.forward, _camera.rotation, Mathf.Infinity, _fishLayerMask);
-        
-        // if (_photoHits.Length > 0)
-        // {
-        //     Debug.Log($"Hit fish | {_photoHits.Length}");
-        // }   
-        // else
-        //     Debug.Log("Didn't hit fish");
-
-
+    public void DropCamera()
+    {
+        _photoCameraOverlay.SetActive(false);
+        _camera.fieldOfView = 60.0f;
     }
 }
