@@ -1149,7 +1149,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _taskType: 2
-  _taskController: {fileID: 0}
   _meshRenderer: {fileID: 398854571}
   _repairedMaterial: {fileID: 2100000, guid: 0a23598c1b756574bbe2edb3f1a6c387, type: 2}
 --- !u!65 &398854570
@@ -1327,8 +1326,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _taskType: 1
-  _taskController: {fileID: 375435729}
   _fishType: {fileID: 11400000, guid: 1f0f12b8316bf464bba29179b08bb142, type: 2}
+  _taskController: {fileID: 375435729}
 --- !u!114 &424127341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1342,8 +1341,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _taskType: 0
-  _taskController: {fileID: 375435729}
   _fishType: {fileID: 11400000, guid: 1f0f12b8316bf464bba29179b08bb142, type: 2}
+  _taskController: {fileID: 375435729}
 --- !u!1 &502981727
 GameObject:
   m_ObjectHideFlags: 0
@@ -1553,8 +1552,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _taskType: 0
-  _taskController: {fileID: 0}
   _fishType: {fileID: 11400000, guid: d6814013a4899744e953c9f6cea2ec37, type: 2}
+  _taskController: {fileID: 0}
 --- !u!1 &606434843
 GameObject:
   m_ObjectHideFlags: 0
@@ -1846,8 +1845,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _taskType: 0
-  _taskController: {fileID: 0}
   _fishType: {fileID: 11400000, guid: 2cc6d26de8e3fa441845ff076c1b3c35, type: 2}
+  _taskController: {fileID: 0}
 --- !u!65 &683826268
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2587,8 +2586,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _taskType: 1
-  _taskController: {fileID: 0}
   _fishType: {fileID: 11400000, guid: d6814013a4899744e953c9f6cea2ec37, type: 2}
+  _taskController: {fileID: 0}
 --- !u!65 &1152772640
 BoxCollider:
   m_ObjectHideFlags: 0

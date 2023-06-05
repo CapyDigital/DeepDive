@@ -21,12 +21,13 @@ public class PhotoCamera : MonoBehaviour
         _screenCapture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
         _displayingPhoto = false;
 
-        _camera.fieldOfView = 30.0f;
+        //_camera.fieldOfView = 30.0f;
     }
 
     private void Start()
     {
         _taskManager = FindObjectOfType<TaskManager>();
+        _photoCameraOverlay.SetActive(false);
     }
 
     private void Update()
@@ -43,6 +44,11 @@ public class PhotoCamera : MonoBehaviour
             }      
         }
         
+    }
+
+    public void ChangeRenderersStatus(bool status)
+    {
+        foreach(Renderer r in transform.GetComponentsInChildren<Renderer>()) r.enabled = status;
     }
 
     private IEnumerator TakePhoto()
@@ -88,5 +94,17 @@ public class PhotoCamera : MonoBehaviour
     {
         _photoCameraOverlay.SetActive(false);
         _camera.fieldOfView = 60.0f;
+    }
+
+    public void TakePhotoVR()
+    {
+        if (_displayingPhoto)
+            HidePhoto();
+        else
+        {
+            StartCoroutine(TakePhoto()); 
+
+            //_taskManager.CheckPhotoFish();
+        }      
     }
 }
