@@ -50,19 +50,42 @@ public class TaskManager : MonoBehaviour
             if (VisibilityChecker.CheckObjectVisibility(Camera.main, r))
             {
                 Debug.Log("Fish in photo");
-                FishTask aux = r.GetComponent<FishTask>();
-                {
-                    if (aux != null)
-                    {
-                        if (_fishToPhotograph.Contains(aux.FishType))
-                        {
-                            _fishToPhotograph.Remove(aux.FishType);
-                            _fishRenderersToRemove.Add(r);
+                // FishTask aux = r.GetComponent<FishTask>();
+                // {
+                //     if (aux != null)
+                //     {
+                //         if (_fishToPhotograph.Contains(aux.FishType))
+                //         {
+                //             _fishToPhotograph.Remove(aux.FishType);
+                //             _fishRenderersToRemove.Add(r);
+                //             aux.UpdateTaskProgress();
                             
-                            Debug.Log("Fish wasn't yet photographed. +1 task completed." +
-                                $"There are {_fishToPhotograph.Count} fish left to photograph");
+                //             Debug.Log("Fish wasn't yet photographed. +1 task completed." +
+                //                 $"There are {_fishToPhotograph.Count} fish left to photograph");
 
-                            IncreaseCompletedTaskAmount();
+                //             IncreaseCompletedTaskAmount();
+                //         }
+                //     }
+                // }
+
+                FishTask[] fishTasks = r.GetComponents<FishTask>();
+                {
+                    if (fishTasks.Length > 0)
+                    {
+                        foreach (FishTask task in fishTasks)
+                        {
+                            if (task.TaskType == TaskType.PHOTOGRAPH &&
+                                    _fishToPhotograph.Contains(task.FishType))
+                            {
+                                _fishToPhotograph.Remove(task.FishType);
+                                _fishRenderersToRemove.Add(r);
+                                task.UpdateTaskProgress();
+                                
+                                Debug.Log("Fish wasn't yet photographed. +1 task completed." +
+                                    $"There are {_fishToPhotograph.Count} fish left to photograph");
+
+                                IncreaseCompletedTaskAmount();
+                            }
                         }
                     }
                 }
@@ -76,7 +99,7 @@ public class TaskManager : MonoBehaviour
         }
     }
 
-    public void CheckTagFish(FishType fishType)
+    public bool CheckTagFish(FishType fishType)
     {
         if (_fishToTag.Contains(fishType))
         {
@@ -84,10 +107,12 @@ public class TaskManager : MonoBehaviour
             _fishToTag.Remove(fishType);
             
             IncreaseCompletedTaskAmount();
+            return true;
         }
         else
         {
             Debug.Log("Tagged fish not on list to tag");
+            return false;
         }
     }
 

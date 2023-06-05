@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class TagGun : MonoBehaviour
 {
-    [SerializeField] private Transform  _bulletSpawnPoint;
-    [SerializeField] private LayerMask  _gunHitLayerMask;
-    [SerializeField] private GameObject _laserSight;
+    [SerializeField] private Transform                  _bulletSpawnPoint;
+    [SerializeField] private LayerMask                  _gunHitLayerMask;
+    [SerializeField] private GameObject                 _laserSight;
+    
 
     private RaycastHit  _bulletHit;
     private TaskManager _taskManager;
@@ -12,7 +13,7 @@ public class TagGun : MonoBehaviour
     private void Awake()
     {
         _taskManager = FindObjectOfType<TaskManager>();
-        _laserSight.SetActive(false);
+        //_laserSight.SetActive(false);
     }
 
     
@@ -29,13 +30,22 @@ public class TagGun : MonoBehaviour
         if (Physics.Raycast(_bulletSpawnPoint.position, _bulletSpawnPoint.forward,
             out _bulletHit, Mathf.Infinity, _gunHitLayerMask))
         {
-            FishTask fish = _bulletHit.transform.GetComponent<FishTask>();
+            // FishTask fish = _bulletHit.transform.GetComponent<FishTask>();
 
-            if (fish != null)
+            // if (fish != null)
+            // {
+            //     if (_taskManager.CheckTagFish(fish.FishType)) fish.UpdateTaskProgress();
+            // }
+
+            FishTask[] fishTasks = _bulletHit.transform.GetComponents<FishTask>();
+            if (fishTasks.Length > 0)
             {
-                _taskManager.CheckTagFish(fish.FishType);
+                foreach (FishTask task in fishTasks)
+                {
+                    if (task.TaskType == TaskType.TAG && _taskManager.CheckTagFish(task.FishType))
+                        task.UpdateTaskProgress();
+                }
             }
-
 
             if (_bulletHit.collider)
             {
