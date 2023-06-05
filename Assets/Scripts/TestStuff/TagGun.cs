@@ -12,7 +12,7 @@ public class TagGun : MonoBehaviour
     private void Awake()
     {
         _taskManager = FindObjectOfType<TaskManager>();
-        //_laserSight.SetActive(false);
+        _laserSight.SetActive(false);
     }
 
     
@@ -37,10 +37,10 @@ public class TagGun : MonoBehaviour
             }
 
 
-            // if (_bulletHit.collider)
-            // {
-            //     Debug.Log(_bulletHit.collider.name);
-            // }
+            if (_bulletHit.collider)
+            {
+                Debug.Log(_bulletHit.collider.name);
+            }
         }
         else Debug.Log("Didn't hit anything");
     }
