@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MechanicsTesting.unity
-    guid: ef0406354f2c5c0418227cf38f07d672
+    path: Assets/Scenes/DaylightBuild.unity
+    guid: 74d17fbafae6e9f44a7cb089b29c505d
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: fa476add21eaad54d86d6d2027a673a2, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 9a4977e2bade14c429ef862b17a31d8e, type: 2}
