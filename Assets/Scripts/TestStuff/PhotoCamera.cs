@@ -69,6 +69,7 @@ public class PhotoCamera : MonoBehaviour
         Rect photoRegion = new Rect(0, 0, Screen.width, Screen.height);
 
         _cameraAudioSource.PlayOneShot(_cameraSound);
+        _taskManager.CheckPhotoFish();
         _screenCapture.ReadPixels(photoRegion, 0, 0, false);
         _screenCapture.Apply();
 

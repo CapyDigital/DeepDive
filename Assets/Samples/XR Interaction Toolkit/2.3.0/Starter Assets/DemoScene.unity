@@ -3579,6 +3579,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: XR Device Simulator
       objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
 --- !u!1 &1643429054
@@ -9085,6 +9089,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   _photoCameraFov: 30
+  _cameraAudioSource: {fileID: 0}
+  _cameraSound: {fileID: 0}
 --- !u!4 &1891878996
 Transform:
   m_ObjectHideFlags: 0

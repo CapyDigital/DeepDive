@@ -13,17 +13,17 @@ public class TagGun : MonoBehaviour
     private void Awake()
     {
         _taskManager = FindObjectOfType<TaskManager>();
-        //_laserSight.SetActive(false);
+        _laserSight.SetActive(false);
     }
 
     
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Shoot();
-        }
-    }
+    // private void Update()
+    // {
+    //     if (Input.GetMouseButtonDown(0))
+    //     {
+    //         Shoot();
+    //     }
+    // }
 
     public void Shoot()
     {

@@ -9,6 +9,12 @@ public class TaskManager : MonoBehaviour
 
     [SerializeField] private List<Renderer> _fishRenderers;
 
+    [SerializeField] private Camera _playerCam;
+
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip   _levelCompletionVoice;
+    [SerializeField] private SceneController _sceneController;
+
     private int _tasksToBeCompletedAmount;
     private int _completedTasksAmount;
 
@@ -32,7 +38,12 @@ public class TaskManager : MonoBehaviour
     private void CheckLevelCompletion()
     {
         if (_completedTasksAmount >= _tasksToBeCompletedAmount)
+        {
             Debug.Log("Level complete.");
+            //_audioSource.PlayOneShot(_levelCompletionVoice);
+            _sceneController.LoadNextScene();
+        }
+            
     }
 
     public void CheckPhotoFish()
@@ -47,7 +58,7 @@ public class TaskManager : MonoBehaviour
         _fishRenderersToRemove.Clear();
         foreach (Renderer r in _fishRenderers)
         {
-            if (VisibilityChecker.CheckObjectVisibility(Camera.main, r))
+            if (VisibilityChecker.CheckObjectVisibility(_playerCam, r))
             {
                 Debug.Log("Fish in photo");
                 // FishTask aux = r.GetComponent<FishTask>();
