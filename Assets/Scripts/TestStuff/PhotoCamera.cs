@@ -32,6 +32,12 @@ public class PhotoCamera : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            _photoCameraOverlay.SetActive(true);
+            _camera.fieldOfView = _photoCameraFov;
+        }
+
         if (Input.GetKeyDown(KeyCode.Return))
         {
             if (_displayingPhoto)
