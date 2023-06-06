@@ -4,13 +4,15 @@ using UnityEngine.UI;
 
 public class PhotoCamera : MonoBehaviour
 {
-    [SerializeField] private Image      _photoDisplayArea;
-    [SerializeField] private GameObject _photoFrame;
-    [SerializeField] private GameObject _photoCameraOverlay;
-    [SerializeField] private Animator   _photoDisplayAnimator;
-    [SerializeField] private Camera     _camera;
-    [SerializeField] private LayerMask  _fishLayerMask;
-    [SerializeField] private float      _photoCameraFov = 30.0f;
+    [SerializeField] private Image          _photoDisplayArea;
+    [SerializeField] private GameObject     _photoFrame;
+    [SerializeField] private GameObject     _photoCameraOverlay;
+    [SerializeField] private Animator       _photoDisplayAnimator;
+    [SerializeField] private Camera         _camera;
+    [SerializeField] private LayerMask      _fishLayerMask;
+    [SerializeField] private float          _photoCameraFov = 30.0f;
+    [SerializeField] private AudioSource    _cameraAudioSource;
+    [SerializeField] private AudioClip      _cameraSound;
 
     private Texture2D   _screenCapture;
     private TaskManager _taskManager;
@@ -66,6 +68,7 @@ public class PhotoCamera : MonoBehaviour
 
         Rect photoRegion = new Rect(0, 0, Screen.width, Screen.height);
 
+        _cameraAudioSource.PlayOneShot(_cameraSound);
         _screenCapture.ReadPixels(photoRegion, 0, 0, false);
         _screenCapture.Apply();
 
