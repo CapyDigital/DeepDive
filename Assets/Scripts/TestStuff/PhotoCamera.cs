@@ -104,6 +104,8 @@ public class PhotoCamera : MonoBehaviour
     {
         _photoCameraOverlay.SetActive(false);
         _camera.fieldOfView = 60.0f;
+        
+        if (_displayingPhoto) HidePhoto();
     }
 
     public void TakePhotoVR()
