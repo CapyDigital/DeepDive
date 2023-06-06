@@ -38,6 +38,9 @@ public class TagGun : MonoBehaviour
             // }
 
             FishTask[] fishTasks = _bulletHit.transform.GetComponents<FishTask>();
+
+            if (fishTasks.Length < 1) fishTasks = _bulletHit.transform.GetComponentsInParent<FishTask>();
+
             if (fishTasks.Length > 0)
             {
                 foreach (FishTask task in fishTasks)

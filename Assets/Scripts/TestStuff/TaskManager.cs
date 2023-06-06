@@ -69,26 +69,28 @@ public class TaskManager : MonoBehaviour
                 // }
 
                 FishTask[] fishTasks = r.GetComponents<FishTask>();
+                
+                if (fishTasks.Length < 1) fishTasks = r.GetComponentsInParent<FishTask>();
+                
+                if (fishTasks.Length > 0)
                 {
-                    if (fishTasks.Length > 0)
+                    foreach (FishTask task in fishTasks)
                     {
-                        foreach (FishTask task in fishTasks)
+                        if (task.TaskType == TaskType.PHOTOGRAPH &&
+                                _fishToPhotograph.Contains(task.FishType))
                         {
-                            if (task.TaskType == TaskType.PHOTOGRAPH &&
-                                    _fishToPhotograph.Contains(task.FishType))
-                            {
-                                _fishToPhotograph.Remove(task.FishType);
-                                _fishRenderersToRemove.Add(r);
-                                task.CompleteTask();
-                                
-                                Debug.Log("Fish wasn't yet photographed. +1 task completed." +
-                                    $"There are {_fishToPhotograph.Count} fish left to photograph");
+                            _fishToPhotograph.Remove(task.FishType);
+                            _fishRenderersToRemove.Add(r);
+                            task.CompleteTask();
+                            
+                            Debug.Log("Fish wasn't yet photographed. +1 task completed." +
+                                $"There are {_fishToPhotograph.Count} fish left to photograph");
 
-                                IncreaseCompletedTaskAmount();
-                            }
+                            IncreaseCompletedTaskAmount();
                         }
                     }
                 }
+                
             }
                 
         }
