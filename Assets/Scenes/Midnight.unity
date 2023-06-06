@@ -1410,6 +1410,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sunshafts (Area) (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4482441981194276185, guid: 706ae8fdf6ec04e479928aaa79af230f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4482441981194276186, guid: 706ae8fdf6ec04e479928aaa79af230f, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -6769,6 +6773,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sunshafts (Area) (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4482441981194276185, guid: 706ae8fdf6ec04e479928aaa79af230f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4482441981194276186, guid: 706ae8fdf6ec04e479928aaa79af230f, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -10597,6 +10605,10 @@ PrefabInstance:
     - target: {fileID: 4482441981194276185, guid: 706ae8fdf6ec04e479928aaa79af230f, type: 3}
       propertyPath: m_Name
       value: Sunshafts (Area) (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4482441981194276185, guid: 706ae8fdf6ec04e479928aaa79af230f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4482441981194276186, guid: 706ae8fdf6ec04e479928aaa79af230f, type: 3}
       propertyPath: m_RootOrder
