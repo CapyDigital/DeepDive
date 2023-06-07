@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
@@ -53,7 +54,7 @@ public class SceneController : MonoBehaviour
         _sceneTransitionOverlay.alpha = 0.0f;
         _sceneTransitionOverlay.gameObject.SetActive(true);
 
-        // Play cage roll sound
+        // Play level complete speech
         _cageRollSource.PlayOneShot(_levelCompleteVoice);
 
         // Wait for cage roll sound to finish
@@ -71,5 +72,9 @@ public class SceneController : MonoBehaviour
         _sceneTransitionOverlay.alpha = 1.0f;
 
         _cageRollSource.PlayOneShot(_cageRollSound);
+
+        yield return new WaitForSeconds(_cageRollSound.length / 2);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DaylightBuild.unity
     guid: 74d17fbafae6e9f44a7cb089b29c505d
+  - enabled: 1
+    path: Assets/Scenes/Deep Sea Base 1.unity
+    guid: 4721f4fb2a914714e867da871504cbe2
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: fa476add21eaad54d86d6d2027a673a2, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 9a4977e2bade14c429ef862b17a31d8e, type: 2}
