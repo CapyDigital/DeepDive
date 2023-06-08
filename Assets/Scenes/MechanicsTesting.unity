@@ -155,7 +155,7 @@ Transform:
   - {fileID: 1233129901}
   - {fileID: 1085070711}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &48903942
 GameObject:
@@ -168,7 +168,6 @@ GameObject:
   - component: {fileID: 48903943}
   - component: {fileID: 48903947}
   - component: {fileID: 48903946}
-  - component: {fileID: 48903945}
   m_Layer: 0
   m_Name: RepairPointBroken
   m_TagString: Untagged
@@ -191,19 +190,6 @@ Transform:
   m_Father: {fileID: 1233129901}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &48903945
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 48903942}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &48903946
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -349,7 +335,7 @@ RectTransform:
   - {fileID: 1728128023}
   - {fileID: 1608110553}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -889,7 +875,7 @@ Transform:
   - {fileID: 126968997}
   - {fileID: 313588587}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &257610460
 MonoBehaviour:
@@ -904,6 +890,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _checkForRepairPoint: {fileID: 313588587}
+  _fireParticles: {fileID: 0}
 --- !u!1 &313588586
 GameObject:
   m_ObjectHideFlags: 0
@@ -968,7 +955,7 @@ Transform:
   - {fileID: 971550118}
   - {fileID: 1479445178}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &338344028
 MonoBehaviour:
@@ -1055,7 +1042,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &359870413
 GameObject:
@@ -1249,9 +1236,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _taskType: 2
-  _meshRenderer: {fileID: 398854571}
-  _repairedMaterial: {fileID: 2100000, guid: 0a23598c1b756574bbe2edb3f1a6c387, type: 2}
-  _brokenMaterial: {fileID: 2100000, guid: eb6cebe8b5d6a9a4dac8e4bdf6864ae6, type: 2}
   _repairedObjectRenderer: {fileID: 398854571}
   _brokenObjectRenderer: {fileID: 48903946}
   _repairGoal: 5
@@ -1543,7 +1527,7 @@ Transform:
   m_Children:
   - {fileID: 1049800385}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &530691118
 GameObject:
@@ -2221,7 +2205,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &733019292
 GameObject:
@@ -2287,7 +2271,7 @@ Transform:
   - {fileID: 606434846}
   - {fileID: 629270177}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -69.848, z: 0}
 --- !u!114 &733019296
 MonoBehaviour:
@@ -2883,7 +2867,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1152772637
 GameObject:
@@ -3084,7 +3068,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1322501822
 GameObject:
@@ -3642,7 +3626,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1608110552
 GameObject:
@@ -4623,7 +4607,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2051542957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4637,6 +4621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _checkForRepairPoint: {fileID: 1404542382}
+  _fireParticles: {fileID: 0}
 --- !u!114 &2051542958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4829,13 +4814,74 @@ Transform:
   - {fileID: 1994643323}
   - {fileID: 1404542382}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2077350751 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9014170785475729501, guid: 895f6f3c2d334633b5800312285058d2, type: 3}
   m_PrefabInstance: {fileID: 1524400305}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2085697433
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1962626901, guid: e4383a959d53fd341af0b5b6fa00acf8, type: 3}
+      propertyPath: m_InteractionManager
+      value: 
+      objectReference: {fileID: 1826018241}
+    - target: {fileID: 2602702032276069885, guid: e4383a959d53fd341af0b5b6fa00acf8, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2602702032276069885, guid: e4383a959d53fd341af0b5b6fa00acf8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.165
+      objectReference: {fileID: 0}
+    - target: {fileID: 2602702032276069885, guid: e4383a959d53fd341af0b5b6fa00acf8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.802
+      objectReference: {fileID: 0}
+    - target: {fileID: 2602702032276069885, guid: e4383a959d53fd341af0b5b6fa00acf8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.057849
+      objectReference: {fileID: 0}
+    - target: {fileID: 2602702032276069885, guid: e4383a959d53fd341af0b5b6fa00acf8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.000000104308114
+      objectReference: {fileID: 0}
+    - target: {fileID: 2602702032276069885, guid: e4383a959d53fd341af0b5b6fa00acf8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -1.4133722e-13
+      objectReference: {fileID: 0}
+    - target: {fileID: 2602702032276069885, guid: e4383a959d53fd341af0b5b6fa00acf8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2602702032276069885, guid: e4383a959d53fd341af0b5b6fa00acf8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -3.8902458e-14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2602702032276069885, guid: e4383a959d53fd341af0b5b6fa00acf8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2602702032276069885, guid: e4383a959d53fd341af0b5b6fa00acf8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: 2602702032276069885, guid: e4383a959d53fd341af0b5b6fa00acf8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3410763246099023687, guid: e4383a959d53fd341af0b5b6fa00acf8, type: 3}
+      propertyPath: m_Name
+      value: RepairTorch (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e4383a959d53fd341af0b5b6fa00acf8, type: 3}
 --- !u!4 &2109907644 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9014170783705847996, guid: 895f6f3c2d334633b5800312285058d2, type: 3}

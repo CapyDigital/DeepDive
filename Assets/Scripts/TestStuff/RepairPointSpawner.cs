@@ -51,7 +51,7 @@ public class RepairPointSpawner : MonoBehaviour
         if (_currentCooldown > 0)
         {
             UpdateCurrentCooldown();
-            Debug.Log($"Current cooldown = {_currentCooldown}");
+            //Debug.Log($"Current cooldown = {_currentCooldown}");
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1)) Debug.Log($"{_repairedPoints.Count}");

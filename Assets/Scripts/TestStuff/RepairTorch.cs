@@ -4,6 +4,7 @@ using UnityEngine;
 public class RepairTorch : MonoBehaviour
 {
     [SerializeField] private Transform _checkForRepairPoint;
+    [SerializeField] private ParticleSystem _fireParticles;
 
     private bool _collidingWithRepairPoint;
     private bool _activated;
@@ -12,6 +13,8 @@ public class RepairTorch : MonoBehaviour
     {
         _collidingWithRepairPoint   = false;
         _activated                  = false;
+
+        _fireParticles.Stop();
     }
 
     // private void Update()
@@ -43,12 +46,14 @@ public class RepairTorch : MonoBehaviour
     public void ActivateTorch()
     {
         _activated = true;
+        _fireParticles.Play();
         StartCoroutine(Repair());
     }
 
     public void DeActivateTorch()
     {
         _activated = false;
+        _fireParticles.Stop();
         StopAllCoroutines();
     }
 
