@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class TaskManager : MonoBehaviour
 {
+    public bool AllTasksCompleted => _allTasksCompleted;
+
     [SerializeField] private List<FishType> _fishToPhotograph;
     [SerializeField] private List<FishType> _fishToTag;
     [SerializeField] private List<RepairTask> _repairPoints;
@@ -15,8 +17,9 @@ public class TaskManager : MonoBehaviour
     [SerializeField] private AudioClip   _levelCompletionVoice;
     [SerializeField] private SceneController _sceneController;
 
-    private int _tasksToBeCompletedAmount;
-    private int _completedTasksAmount;
+    private int     _tasksToBeCompletedAmount;
+    private int     _completedTasksAmount;
+    private bool    _allTasksCompleted;
 
     private int _tasksLeft => _tasksToBeCompletedAmount - _completedTasksAmount;
 
@@ -28,6 +31,7 @@ public class TaskManager : MonoBehaviour
         _tasksToBeCompletedAmount   = _fishToPhotograph.Count + _fishToTag.Count + _repairPoints.Count;
         _completedTasksAmount       = 0;
         _fishRenderersToRemove      = new List<Renderer>(_fishToPhotograph.Count);
+        _allTasksCompleted          = false;
     }
 
     private void Update()
@@ -48,9 +52,9 @@ public class TaskManager : MonoBehaviour
         {
             Debug.Log("Level complete.");
             //_audioSource.PlayOneShot(_levelCompletionVoice);
+            _allTasksCompleted = true;
             _sceneController.LoadNextScene();
-        }
-            
+        }   
     }
 
     public void CheckPhotoFish()
