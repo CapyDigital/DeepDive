@@ -18,6 +18,8 @@ public class TaskManager : MonoBehaviour
     private int _tasksToBeCompletedAmount;
     private int _completedTasksAmount;
 
+    private int _tasksLeft => _tasksToBeCompletedAmount - _completedTasksAmount;
+
 
     private List<Renderer> _fishRenderersToRemove;
 
@@ -26,6 +28,11 @@ public class TaskManager : MonoBehaviour
         _tasksToBeCompletedAmount   = _fishToPhotograph.Count + _fishToTag.Count + _repairPoints.Count;
         _completedTasksAmount       = 0;
         _fishRenderersToRemove      = new List<Renderer>(_fishToPhotograph.Count);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha0)) Debug.Log($"Tasks left: {_tasksLeft}");
     }
 
     private void IncreaseCompletedTaskAmount()
@@ -129,13 +136,21 @@ public class TaskManager : MonoBehaviour
         }
     }
 
-    public void UpdateRepairPoints(RepairTask repairTask)
+    // public void UpdateRepairPoints(RepairTask repairTask)
+    // {
+    //     if (_repairPoints.Contains(repairTask))
+    //     {
+    //         Debug.Log("Repaired a point");
+    //         _repairPoints.Remove(repairTask);
+    //         IncreaseCompletedTaskAmount();
+    //     }
+    // }
+
+    public void UpdateRepairPoints()
     {
-        if (_repairPoints.Contains(repairTask))
-        {
-            Debug.Log("Repaired a point");
-            _repairPoints.Remove(repairTask);
-            IncreaseCompletedTaskAmount();
-        }
+        Debug.Log("Repaired a point");
+        IncreaseCompletedTaskAmount();
     }
+
+    public void IncreaseTasksToCompleteAmount() => _tasksToBeCompletedAmount++;
 }
