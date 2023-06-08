@@ -7,8 +7,11 @@ public class RepairTask : Task
     [SerializeField] private MeshRenderer   _meshRenderer;
     [SerializeField] private Material       _repairedMaterial;
 
+    [SerializeField] private float _repairGoal = 5.0f;
+
     private Vector3     _repairPoint;
     private TaskManager _taskManager;
+    private float       _currentRepairAmount;
 
     private void Awake()
     {
@@ -25,5 +28,15 @@ public class RepairTask : Task
         _meshRenderer.material = _repairedMaterial;
         _taskManager.UpdateRepairPoints(this);
         Destroy(this);
+    }
+
+    public void Repair()
+    {
+        if (_currentRepairAmount < _repairGoal)
+        {
+            Debug.Log("Repair point is being repaired...");
+            _currentRepairAmount += Time.deltaTime;
+        }
+        else CompleteTask();
     }
 }
