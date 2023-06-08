@@ -5,6 +5,13 @@ public class RepairTorch : MonoBehaviour
 {
     [SerializeField] private Transform _checkForRepairPoint;
     [SerializeField] private ParticleSystem _fireParticles;
+    [SerializeField] private ParticleSystem _bubblesParticles;
+    [SerializeField] private AudioSource    _blowTorchAudioSource;
+    [SerializeField] private AudioSource    _bubblesAudioSource;
+
+
+    [SerializeField] private Transform _sphereCastPosition;
+    [SerializeField] private LayerMask _repairPointLayerMask;
 
     private bool _collidingWithRepairPoint;
     private bool _activated;
@@ -13,8 +20,7 @@ public class RepairTorch : MonoBehaviour
     {
         _collidingWithRepairPoint   = false;
         _activated                  = false;
-
-        _fireParticles.Stop();
+        StopParticles();
     }
 
     // private void Update()
@@ -46,23 +52,54 @@ public class RepairTorch : MonoBehaviour
     public void ActivateTorch()
     {
         _activated = true;
-        _fireParticles.Play();
+        PlayParticles();
+        _blowTorchAudioSource.Play();
+        _bubblesAudioSource.Play();
         StartCoroutine(Repair());
     }
 
     public void DeActivateTorch()
     {
         _activated = false;
-        _fireParticles.Stop();
+        StopParticles();
+        _blowTorchAudioSource.Stop();
+        _bubblesAudioSource.Stop();
         StopAllCoroutines();
+    }
+
+    private void StopParticles()
+    {
+        _fireParticles.Stop();
+        _bubblesParticles.Stop();
+    }
+
+    private void PlayParticles()
+    {
+        _fireParticles.Play();
+        _bubblesParticles.Play();
     }
 
     private IEnumerator Repair()
     {
         while (_activated)
         {
-            if (Physics.Raycast(_checkForRepairPoint.position, _checkForRepairPoint.forward,
-                out RaycastHit hitInfo, 1.0f))
+            // if (Physics.Raycast(_checkForRepairPoint.position, _checkForRepairPoint.forward,
+            //     out RaycastHit hitInfo, 1.0f))
+            // {
+            //     RepairTask aux = hitInfo.transform.GetComponent<RepairTask>();
+            //     if (aux != null)
+            //     {
+            //         //Debug.Log("Repair point was hit trigger");
+            //         //aux.CompleteTask();
+            //         aux.Repair();
+            //     }
+            //     else Debug.Log("Hit something that is not repair point");
+            // }
+            // else Debug.Log("Repair gun didn't hit anything");
+
+
+            if (Physics.SphereCast(_sphereCastPosition.position, 0.20f, _sphereCastPosition.forward,
+                out RaycastHit hitInfo, 0.35f, _repairPointLayerMask))
             {
                 RepairTask aux = hitInfo.transform.GetComponent<RepairTask>();
                 if (aux != null)
@@ -79,5 +116,14 @@ public class RepairTorch : MonoBehaviour
         }
 
         Debug.Log("Repair torch stopped repairing");
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (_sphereCastPosition != null)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawSphere(_sphereCastPosition.position, 0.20f);
+        }
     }
 }
