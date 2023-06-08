@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class RepairTask : Task
@@ -7,14 +8,23 @@ public class RepairTask : Task
 
     [SerializeField] private float _repairGoal = 5.0f;
 
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _weldingSound;
+    [SerializeField] private List<AudioClip> _metalBendSounds;
+
     private TaskManager         _taskManager;
     private RepairPointSpawner  _spawner;
     private float               _currentRepairAmount;
     private bool                _canBeRepaired;
 
+
+    private float _timeSinceLastRepair;
+    private bool _startedPlayingRepairSound;
+
     private void Awake()
     {
         _canBeRepaired = false;
+        _startedPlayingRepairSound = false;
     }
 
     private void Start()
@@ -26,13 +36,32 @@ public class RepairTask : Task
         _spawner.AddRepairedPoint(this);
     }
 
-    // private void Update()
-    // {
-    //     if (Input.GetKeyDown(KeyCode.Alpha5)) ActivateRepairPoint();
-    // }
+    private void Update()
+    {
+        if (_startedPlayingRepairSound)
+        {
+            float currentTime = Time.time;
+            if (currentTime - _timeSinceLastRepair > 0.1f)
+            {
+                Debug.Log("Gonna stop playing welding sound");
+                _audioSource.Stop();
+                _audioSource.loop = false;
+                _audioSource.clip = null;
+                _startedPlayingRepairSound = false;
+            }
+            else Debug.Log("Still repairing, not gonna stop weld sound");
+        }
+    }
+
+    private void PlayMetalBendSound()
+    {
+        AudioClip soundToPlay = _metalBendSounds[Random.Range(0, _metalBendSounds.Count)];
+        _audioSource.PlayOneShot(soundToPlay);
+    }
 
     public void ActivateRepairPoint()
     {
+        PlayMetalBendSound();
         Debug.Log($"Broken point activated. ({Time.time})");
         _canBeRepaired          = true;
         _currentRepairAmount    = 0.0f;
@@ -56,6 +85,17 @@ public class RepairTask : Task
         {
             Debug.Log("Repair point is being repaired...");
             _currentRepairAmount += Time.deltaTime;
+
+            if (!_startedPlayingRepairSound)
+            {
+                Debug.Log("Started playing repair sound");
+                _startedPlayingRepairSound = true;
+                _audioSource.clip = _weldingSound;
+                _audioSource.loop = true;
+                _audioSource.Play();
+            }
+
+            if (_startedPlayingRepairSound) _timeSinceLastRepair = Time.time;
 
             if (_currentRepairAmount >= _repairGoal) CompleteTask();
         }
