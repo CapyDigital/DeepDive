@@ -60,6 +60,8 @@ public class RepairTorch : MonoBehaviour
 
     public void DeActivateTorch()
     {
+        if (!_activated) return;
+        
         _activated = false;
         StopParticles();
         _blowTorchAudioSource.Stop();
