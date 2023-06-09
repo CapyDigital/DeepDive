@@ -7,7 +7,6 @@ public class TaskManager : MonoBehaviour
 
     [SerializeField] private List<FishType> _fishToPhotograph;
     [SerializeField] private List<FishType> _fishToTag;
-    [SerializeField] private List<RepairTask> _repairPoints;
 
     [SerializeField] private List<Renderer> _fishRenderers;
 
@@ -31,7 +30,7 @@ public class TaskManager : MonoBehaviour
 
     private void Awake()
     {
-        _tasksToBeCompletedAmount   = _fishToPhotograph.Count + _fishToTag.Count + _repairPoints.Count;
+        _tasksToBeCompletedAmount   = _fishToPhotograph.Count + _fishToTag.Count;
         _completedTasksAmount       = 0;
         _fishRenderersToRemove      = new List<Renderer>(_fishToPhotograph.Count);
         _allTasksCompleted          = false;

@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 5415594699519862426}
   - component: {fileID: 5415594699519862425}
   - component: {fileID: 5415594699519862439}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RightHand (Teleport Locomotion)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1074,7 +1074,7 @@ GameObject:
   - component: {fileID: 5415594700407789174}
   - component: {fileID: 5415594700407789173}
   - component: {fileID: 5415594700407789171}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LeftHand (Smooth locomotion)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1566,6 +1566,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Custom Right Hand Model
       objectReference: {fileID: 0}
+    - target: {fileID: 5686134208185362930, guid: d2121c8d819597349ac6f3e6043fa1f3, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 5686134208196863108, guid: d2121c8d819597349ac6f3e6043fa1f3, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1591,6 +1595,10 @@ PrefabInstance:
     - target: {fileID: 109434732395284509, guid: 7811abe38615a86438f679bcf79f5b92, type: 3}
       propertyPath: m_Name
       value: Custom Left Hand Model
+      objectReference: {fileID: 0}
+    - target: {fileID: 109434732395284509, guid: 7811abe38615a86438f679bcf79f5b92, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 109434732395451517, guid: 7811abe38615a86438f679bcf79f5b92, type: 3}
       propertyPath: m_RootOrder
