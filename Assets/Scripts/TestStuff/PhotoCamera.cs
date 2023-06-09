@@ -43,7 +43,7 @@ public class PhotoCamera : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return))
         {
             if (_displayingPhoto)
-                HidePhoto();
+                HidePhoto(true);
             else
             {
                 StartCoroutine(TakePhoto()); 
@@ -57,6 +57,7 @@ public class PhotoCamera : MonoBehaviour
     public void ChangeRenderersStatus(bool status)
     {
         foreach(Renderer r in transform.GetComponentsInChildren<Renderer>()) r.enabled = status;
+        GetComponentInChildren<MeshCollider>().enabled = status;
     }
 
     private IEnumerator TakePhoto()
@@ -87,9 +88,9 @@ public class PhotoCamera : MonoBehaviour
         _photoDisplayAnimator.Play("PhotoFadeIn");
     }
 
-    private void HidePhoto()
+    private void HidePhoto(bool camOverlayStatus)
     {
-        _photoCameraOverlay.SetActive(true);
+        _photoCameraOverlay.SetActive(camOverlayStatus);
         _displayingPhoto = false;
         _photoFrame.SetActive(false);
     }
@@ -105,13 +106,13 @@ public class PhotoCamera : MonoBehaviour
         _photoCameraOverlay.SetActive(false);
         _camera.fieldOfView = 60.0f;
         
-        if (_displayingPhoto) HidePhoto();
+        if (_displayingPhoto) HidePhoto(false);
     }
 
     public void TakePhotoVR()
     {
         if (_displayingPhoto)
-            HidePhoto();
+            HidePhoto(true);
         else
         {
             StartCoroutine(TakePhoto()); 

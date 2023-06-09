@@ -17,6 +17,8 @@ public class TaskManager : MonoBehaviour
     [SerializeField] private AudioClip   _levelCompletionVoice;
     [SerializeField] private SceneController _sceneController;
 
+    [SerializeField] private LayerMask _checkFishVisibilityLayerMask;
+
     private int     _tasksToBeCompletedAmount;
     private int     _completedTasksAmount;
     private bool    _allTasksCompleted;
@@ -69,7 +71,53 @@ public class TaskManager : MonoBehaviour
         _fishRenderersToRemove.Clear();
         foreach (Renderer r in _fishRenderers)
         {
-            if (VisibilityChecker.CheckObjectVisibility(_playerCam, r))
+            // if (VisibilityChecker.CheckObjectVisibility(_playerCam, r))
+            // {
+            //     Debug.Log("Fish in photo");
+            //     // FishTask aux = r.GetComponent<FishTask>();
+            //     // {
+            //     //     if (aux != null)
+            //     //     {
+            //     //         if (_fishToPhotograph.Contains(aux.FishType))
+            //     //         {
+            //     //             _fishToPhotograph.Remove(aux.FishType);
+            //     //             _fishRenderersToRemove.Add(r);
+            //     //             aux.UpdateTaskProgress();
+                            
+            //     //             Debug.Log("Fish wasn't yet photographed. +1 task completed." +
+            //     //                 $"There are {_fishToPhotograph.Count} fish left to photograph");
+
+            //     //             IncreaseCompletedTaskAmount();
+            //     //         }
+            //     //     }
+            //     // }
+
+            //     FishTask[] fishTasks = r.GetComponents<FishTask>();
+                
+            //     if (fishTasks.Length < 1) fishTasks = r.GetComponentsInParent<FishTask>();
+                
+            //     if (fishTasks.Length > 0)
+            //     {
+            //         foreach (FishTask task in fishTasks)
+            //         {
+            //             if (task.TaskType == TaskType.PHOTOGRAPH &&
+            //                     _fishToPhotograph.Contains(task.FishType))
+            //             {
+            //                 _fishToPhotograph.Remove(task.FishType);
+            //                 _fishRenderersToRemove.Add(r);
+            //                 task.CompleteTask();
+                            
+            //                 Debug.Log("Fish wasn't yet photographed. +1 task completed." +
+            //                     $"There are {_fishToPhotograph.Count} fish left to photograph");
+
+            //                 IncreaseCompletedTaskAmount();
+            //             }
+            //         }
+            //     }
+                
+            // }
+            
+            if (VisibilityChecker.CheckObjectVisibility(_playerCam, r, r.transform.parent.gameObject, _checkFishVisibilityLayerMask))
             {
                 Debug.Log("Fish in photo");
                 // FishTask aux = r.GetComponent<FishTask>();
@@ -107,14 +155,15 @@ public class TaskManager : MonoBehaviour
                             
                             Debug.Log("Fish wasn't yet photographed. +1 task completed." +
                                 $"There are {_fishToPhotograph.Count} fish left to photograph");
-
+                            
+                            Debug.Log($"Photographed fish was {r.gameObject.transform.parent.name}");
                             IncreaseCompletedTaskAmount();
+                            break;
                         }
                     }
                 }
                 
             }
-                
         }
 
         if (_fishRenderersToRemove.Count > 0)
