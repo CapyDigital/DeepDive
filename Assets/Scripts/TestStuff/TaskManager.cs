@@ -15,6 +15,7 @@ public class TaskManager : MonoBehaviour
 
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip   _levelCompletionVoice;
+    [SerializeField] private AudioClip   _taskCompletedSound;
     [SerializeField] private SceneController _sceneController;
 
     [SerializeField] private LayerMask _checkFishVisibilityLayerMask;
@@ -44,6 +45,7 @@ public class TaskManager : MonoBehaviour
     private void IncreaseCompletedTaskAmount()
     {
         _completedTasksAmount++;
+        _audioSource.PlayOneShot(_taskCompletedSound);
         Debug.Log($"Tasks completed: {_completedTasksAmount}. Tasks left: {_tasksToBeCompletedAmount - _completedTasksAmount}");
         CheckLevelCompletion();
     }

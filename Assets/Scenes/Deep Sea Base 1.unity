@@ -17210,6 +17210,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 173499159}
     - target: {fileID: 4906496857277416773, guid: 878fb4df82cbdbc43b596b820cb30b35, type: 3}
+      propertyPath: _taskCompletedSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 632e33e153229654fb73deb532eef4a0, type: 3}
+    - target: {fileID: 4906496857277416773, guid: 878fb4df82cbdbc43b596b820cb30b35, type: 3}
       propertyPath: _fishToTag.Array.size
       value: 3
       objectReference: {fileID: 0}
