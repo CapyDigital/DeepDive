@@ -9,11 +9,13 @@ public class SceneController : MonoBehaviour
     [SerializeField] private CanvasGroup                _sceneTransitionOverlay;
     [SerializeField] private float                      _sceneTransitionOverlayFadeTime;
     [SerializeField] private List<SkinnedMeshRenderer>  _vrHandRenderers;
+    [SerializeField] private bool                       _isLastLevel;
 
     [Header("Sound Settings")]
     [SerializeField] private AudioSource    _cageRollSource;
     [SerializeField] private AudioClip      _cageRollSound;
     [SerializeField] private AudioClip      _levelCompleteVoice;
+    [SerializeField] private AudioClip      _levelIndicationsVoice;
 
     private IEnumerator Start()
     {
@@ -40,6 +42,8 @@ public class SceneController : MonoBehaviour
         _sceneTransitionOverlay.alpha = 0.0f;
 
         foreach (SkinnedMeshRenderer mr in _vrHandRenderers) mr.enabled = true;
+
+        if (_levelIndicationsVoice != null) _cageRollSource.PlayOneShot(_levelIndicationsVoice);
     }
 
     public void LoadNextScene()
@@ -75,6 +79,7 @@ public class SceneController : MonoBehaviour
 
         yield return new WaitForSeconds(_cageRollSound.length / 2);
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if (!_isLastLevel)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
