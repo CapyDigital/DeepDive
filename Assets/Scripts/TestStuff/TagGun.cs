@@ -5,6 +5,7 @@ public class TagGun : MonoBehaviour
     [SerializeField] private Transform                  _bulletSpawnPoint;
     [SerializeField] private LayerMask                  _gunHitLayerMask;
     [SerializeField] private GameObject                 _laserSight;
+    [SerializeField] private ParticleSystem             _shootParticles;
 
     [SerializeField] private AudioSource    _audioSource;
     [SerializeField] private AudioClip      _shootSound;
@@ -17,6 +18,7 @@ public class TagGun : MonoBehaviour
     {
         _taskManager = FindObjectOfType<TaskManager>();
         _laserSight.SetActive(false);
+        _shootParticles.Stop();
     }
 
     
@@ -31,6 +33,7 @@ public class TagGun : MonoBehaviour
     public void Shoot()
     {
         _audioSource.PlayOneShot(_shootSound);
+        _shootParticles.Play(true);
         
         if (Physics.Raycast(_bulletSpawnPoint.position, _bulletSpawnPoint.forward,
             out _bulletHit, Mathf.Infinity, _gunHitLayerMask))
