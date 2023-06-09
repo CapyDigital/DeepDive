@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 public class SceneController : MonoBehaviour
 {
     [Header("Scene Transition Settings")]
-    [SerializeField] private CanvasGroup        _sceneTransitionOverlay;
-    [SerializeField] private float              _sceneTransitionOverlayFadeTime;
-    [SerializeField] private List<GameObject>   _handRays;
+    [SerializeField] private CanvasGroup                _sceneTransitionOverlay;
+    [SerializeField] private float                      _sceneTransitionOverlayFadeTime;
+    [SerializeField] private List<SkinnedMeshRenderer>  _vrHandRenderers;
 
     [Header("Sound Settings")]
     [SerializeField] private AudioSource    _cageRollSource;
@@ -17,7 +17,7 @@ public class SceneController : MonoBehaviour
 
     private IEnumerator Start()
     {
-        foreach (GameObject go in _handRays) go.SetActive(false);
+        foreach (SkinnedMeshRenderer mr in _vrHandRenderers) mr.enabled = false;
 
         _sceneTransitionOverlay.alpha = 1.0f;
         _sceneTransitionOverlay.gameObject.SetActive(true);
@@ -39,7 +39,7 @@ public class SceneController : MonoBehaviour
         }
         _sceneTransitionOverlay.alpha = 0.0f;
 
-        foreach (GameObject go in _handRays) go.SetActive(true);
+        foreach (SkinnedMeshRenderer mr in _vrHandRenderers) mr.enabled = true;
     }
 
     public void LoadNextScene()
@@ -49,7 +49,7 @@ public class SceneController : MonoBehaviour
 
     private IEnumerator FadeOutScene()
     {
-        foreach (GameObject go in _handRays) go.SetActive(false);
+        foreach (SkinnedMeshRenderer mr in _vrHandRenderers) mr.enabled = false;
         
         _sceneTransitionOverlay.alpha = 0.0f;
         _sceneTransitionOverlay.gameObject.SetActive(true);
