@@ -67,6 +67,7 @@ public class TaskManager : MonoBehaviour
             return;
         }
 
+        bool photoSuccess = false;
         Debug.Log("Check fish renderers");
         _fishRenderersToRemove.Clear();
         foreach (Renderer r in _fishRenderers)
@@ -158,11 +159,12 @@ public class TaskManager : MonoBehaviour
                             
                             Debug.Log($"Photographed fish was {r.gameObject.transform.parent.name}");
                             IncreaseCompletedTaskAmount();
-                            break;
+                            photoSuccess = true;
                         }
                     }
                 }
-                
+
+                if (photoSuccess) break;
             }
         }
 
