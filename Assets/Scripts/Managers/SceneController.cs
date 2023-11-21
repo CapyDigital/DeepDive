@@ -9,6 +9,7 @@ public class SceneController : MonoBehaviour
     [SerializeField] private CanvasGroup                _sceneTransitionOverlay;
     [SerializeField] private float                      _sceneTransitionOverlayFadeTime;
     [SerializeField] private List<SkinnedMeshRenderer>  _vrHandRenderers;
+    [SerializeField] private bool                       _isFirstScene;
     [SerializeField] private bool                       _isLastLevel;
 
     [Header("Sound Settings")]
@@ -19,6 +20,8 @@ public class SceneController : MonoBehaviour
 
     private IEnumerator Start()
     {
+        if (_isFirstScene) yield break;
+
         foreach (SkinnedMeshRenderer mr in _vrHandRenderers) mr.enabled = false;
 
         _sceneTransitionOverlay.alpha = 1.0f;
@@ -53,16 +56,20 @@ public class SceneController : MonoBehaviour
 
     private IEnumerator FadeOutScene()
     {
-        foreach (SkinnedMeshRenderer mr in _vrHandRenderers) mr.enabled = false;
+        if (!_isFirstScene)
+            foreach (SkinnedMeshRenderer mr in _vrHandRenderers) mr.enabled = false;
         
         _sceneTransitionOverlay.alpha = 0.0f;
         _sceneTransitionOverlay.gameObject.SetActive(true);
 
         // Play level complete speech
-        _cageRollSource.PlayOneShot(_levelCompleteVoice);
+        if (!_isFirstScene)
+        {
+            _cageRollSource.PlayOneShot(_levelCompleteVoice);
 
-        // Wait for cage roll sound to finish
-        yield return new WaitForSeconds(_levelCompleteVoice.length);
+            // Wait for cage roll sound to finish
+            yield return new WaitForSeconds(_levelCompleteVoice.length);
+        }
 
         // Fade out overlay
         float elapsedTime = 0;
@@ -79,7 +86,9 @@ public class SceneController : MonoBehaviour
 
         yield return new WaitForSeconds(_cageRollSound.length / 2);
 
+        // Load next level
         if (!_isLastLevel)
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        else SceneManager.LoadScene(0); // Load the main menu
     }
 }
