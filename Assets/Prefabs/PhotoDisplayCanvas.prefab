@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 708224814888911418}
   - component: {fileID: 708224814888911420}
   - component: {fileID: 708224814888911419}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: PhotoFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 708224814998233745}
   - component: {fileID: 708224814998233744}
   - component: {fileID: 708224814998233711}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: PhotoHolderMask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 708224815624842586}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: PhotoCameraOverlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 708224815999813310}
   - component: {fileID: 708224815999813280}
   - component: {fileID: 708224815999813311}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: PhotoDisplayAreaBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 708224816024785433}
   - component: {fileID: 708224816024785430}
   - component: {fileID: 708224816024785429}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: PhotoDisplayArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -404,7 +404,7 @@ GameObject:
   - component: {fileID: 708224816317934348}
   - component: {fileID: 708224816317934347}
   - component: {fileID: 708224816317934346}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: PhotoDisplayCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -505,7 +505,7 @@ GameObject:
   - component: {fileID: 708224816384396314}
   - component: {fileID: 708224816384396316}
   - component: {fileID: 708224816384396315}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: Overlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}

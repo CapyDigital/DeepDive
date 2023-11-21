@@ -19879,6 +19879,11 @@ SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 5380892125124370674, guid: 96ce8c3990e595a4191416a83621bbf6, type: 3}
   m_PrefabInstance: {fileID: 1328892683}
   m_PrefabAsset: {fileID: 0}
+--- !u!20 &1328892687 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 8587403471270816932, guid: 96ce8c3990e595a4191416a83621bbf6, type: 3}
+  m_PrefabInstance: {fileID: 1328892683}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1332896602
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22395,7 +22400,7 @@ PrefabInstance:
     - target: {fileID: 708224816317934348, guid: 0e664899eec97c9498ef99b8a3d26312, type: 3}
       propertyPath: m_Camera
       value: 
-      objectReference: {fileID: 1328892684}
+      objectReference: {fileID: 1328892687}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e664899eec97c9498ef99b8a3d26312, type: 3}
 --- !u!1 &1466473403
