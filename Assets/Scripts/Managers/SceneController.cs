@@ -54,6 +54,17 @@ public class SceneController : MonoBehaviour
         StartCoroutine(FadeOutScene());
     }
 
+    public void QuitGame()
+    {
+#if UNITY_STANDALONE
+        Application.Quit();
+#endif
+
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+    }
+
     private IEnumerator FadeOutScene()
     {
         if (!_isFirstScene)
