@@ -5,6 +5,7 @@ using UnityEngine;
 public class RepairTask : Task
 {
     [SerializeField] private float _repairGoal = 5.0f;
+    [SerializeField] private float _repairGoalThreshHold = 1.0f;
     [SerializeField] private float _metalDistortionSpeed = 1.0f;
 
     [SerializeField] private AudioSource _audioSource;
@@ -93,33 +94,39 @@ public class RepairTask : Task
 
     public void Repair()
     {
-        
+        // Heat up the metal
         AddHeat(Time.deltaTime);
 
-        if ((_currentRepairAmount < _repairGoal) && _canBeRepaired)
+        // Play welding sound if it hasn't started playing yet
+        if (!_startedPlayingRepairSound)
         {
-            Debug.Log("Repair point is being repaired...");
+            Debug.Log("Started playing repair sound");
+            _startedPlayingRepairSound = true;
+            _audioSource.clip = _weldingSound;
+            _audioSource.loop = true;
+            _audioSource.Play();
+        }
+
+        // Update time since last repair
+        if (_startedPlayingRepairSound) _timeSinceLastRepair = Time.time;
+
+
+        if (_currentRepairAmount < _repairGoal)
+        {
+            //Debug.Log("Repair point is being repaired...");
             _currentRepairAmount += Time.deltaTime;
+            //Debug.Log($"Current repair amount: {_currentRepairAmount}");
 
             float normalizedRepair = _currentRepairAmount / _repairGoal;
             _skinnedMeshRenderer.SetBlendShapeWeight(0, (1 - normalizedRepair) * 100);
 
-            if (!_startedPlayingRepairSound)
+            // Complete the task when the goal with a threshold applied is met
+            if (_currentRepairAmount >= _repairGoal - _repairGoalThreshHold && _canBeRepaired)
             {
-                Debug.Log("Started playing repair sound");
-                _startedPlayingRepairSound = true;
-                _audioSource.clip = _weldingSound;
-                _audioSource.loop = true;
-                _audioSource.Play();
-            }
-
-            if (_startedPlayingRepairSound) _timeSinceLastRepair = Time.time;
-
-            if (_currentRepairAmount >= _repairGoal)
-            {
-                _skinnedMeshRenderer.SetBlendShapeWeight(0, 0);
                 CompleteTask();
             }
+            else if (_currentRepairAmount >= _repairGoal) // Finish repairing after threshold
+                _skinnedMeshRenderer.SetBlendShapeWeight(0, 0); 
         }
     }
 
@@ -139,7 +146,6 @@ public class RepairTask : Task
         }
 
         _skinnedMeshRenderer.SetBlendShapeWeight(0, 100);
-
     }
 
     private void AddHeat(float heat)
