@@ -1,12 +1,11 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class RepairTask : Task
 {
-    [SerializeField] private MeshRenderer _repairedObjectRenderer;
-    [SerializeField] private MeshRenderer _brokenObjectRenderer;
-
     [SerializeField] private float _repairGoal = 5.0f;
+    [SerializeField] private float _metalDistortionSpeed = 1.0f;
 
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip _weldingSound;
@@ -21,23 +20,37 @@ public class RepairTask : Task
     private float _timeSinceLastRepair;
     private bool _startedPlayingRepairSound;
 
+
+    private SkinnedMeshRenderer _skinnedMeshRenderer;
+    private Material BarMaterial => _skinnedMeshRenderer.material;
+
+    private float _heatAmount;
+
+    [SerializeField] private ParticleSystem _bubblesPS;
+
+
     private void Awake()
     {
         _canBeRepaired = false;
         _startedPlayingRepairSound = false;
+        _skinnedMeshRenderer = GetComponent<SkinnedMeshRenderer>();
+        BarMaterial.SetColor("_EmissionColor", Color.black);
+
+        ParticleSystem.EmissionModule emissionModule = _bubblesPS.emission;
+        emissionModule.rateOverTime = 0;
     }
 
     private void Start()
     {
         _taskManager    = FindObjectOfType<TaskManager>();
         _spawner        = FindObjectOfType<RepairPointSpawner>();
-        _brokenObjectRenderer.enabled = false;
 
         _spawner.AddRepairedPoint(this);
     }
 
     private void Update()
     {
+        AddHeat(-Time.deltaTime / 2);
         if (_startedPlayingRepairSound)
         {
             float currentTime = Time.time;
@@ -61,19 +74,18 @@ public class RepairTask : Task
 
     public void ActivateRepairPoint()
     {
+        StartCoroutine(DistortShape());
+
+
         PlayMetalBendSound();
         Debug.Log($"Broken point activated. ({Time.time})");
         _canBeRepaired          = true;
         _currentRepairAmount    = 0.0f;
-        _brokenObjectRenderer.enabled = true;
-        _repairedObjectRenderer.enabled = false;    
         _taskManager.IncreaseTasksToCompleteAmount();
     }
 
     public override void CompleteTask()
     {
-        _repairedObjectRenderer.enabled = true;
-        _brokenObjectRenderer.enabled = false;
         _canBeRepaired = false;
         _taskManager.UpdateRepairPoints();
         _spawner.AddRepairedPoint(this);
@@ -81,10 +93,16 @@ public class RepairTask : Task
 
     public void Repair()
     {
+        
+        AddHeat(Time.deltaTime);
+
         if ((_currentRepairAmount < _repairGoal) && _canBeRepaired)
         {
             Debug.Log("Repair point is being repaired...");
             _currentRepairAmount += Time.deltaTime;
+
+            float normalizedRepair = _currentRepairAmount / _repairGoal;
+            _skinnedMeshRenderer.SetBlendShapeWeight(0, (1 - normalizedRepair) * 100);
 
             if (!_startedPlayingRepairSound)
             {
@@ -97,7 +115,53 @@ public class RepairTask : Task
 
             if (_startedPlayingRepairSound) _timeSinceLastRepair = Time.time;
 
-            if (_currentRepairAmount >= _repairGoal) CompleteTask();
+            if (_currentRepairAmount >= _repairGoal)
+            {
+                _skinnedMeshRenderer.SetBlendShapeWeight(0, 0);
+                CompleteTask();
+            }
         }
+    }
+
+    private IEnumerator DistortShape()
+    {
+        float elapsed = 0;
+
+        float initialDistortValue = _skinnedMeshRenderer.GetBlendShapeWeight(0);
+        float distortValue;
+
+        while (elapsed < _metalDistortionSpeed)
+        {
+            elapsed += Time.deltaTime;
+            distortValue = Mathf.Lerp(initialDistortValue, 100, elapsed / _metalDistortionSpeed);
+            _skinnedMeshRenderer.SetBlendShapeWeight(0, distortValue);
+            yield return null;
+        }
+
+        _skinnedMeshRenderer.SetBlendShapeWeight(0, 100);
+
+    }
+
+    private void AddHeat(float heat)
+    {
+        _heatAmount += heat;
+        _heatAmount = Mathf.Clamp01(_heatAmount);
+        SetColorFromHeat(_heatAmount);
+        SetEmissionFromHeat(_heatAmount);
+    }
+
+    private void SetColorFromHeat(float progress)
+    {
+        Color c = BarMaterial.GetColor("_EmissionColor");
+        c.r = progress;
+        c.g = progress;
+        c.b = progress;
+        BarMaterial.SetColor("_EmissionColor", c);
+    }
+
+    private void SetEmissionFromHeat(float heat)
+    {
+        ParticleSystem.EmissionModule emissionModule = _bubblesPS.emission;
+        emissionModule.rateOverTime = heat * 150; 
     }
 }
