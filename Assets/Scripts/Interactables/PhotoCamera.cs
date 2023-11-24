@@ -32,27 +32,27 @@ public class PhotoCamera : MonoBehaviour
         _photoCameraOverlay.SetActive(false);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Backspace))
-        {
-            _photoCameraOverlay.SetActive(true);
-            _camera.fieldOfView = _photoCameraFov;
-        }
+    // private void Update()
+    // {
+    //     if (Input.GetKeyDown(KeyCode.Backspace))
+    //     {
+    //         _photoCameraOverlay.SetActive(true);
+    //         _camera.fieldOfView = _photoCameraFov;
+    //     }
 
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            if (_displayingPhoto)
-                HidePhoto(true);
-            else
-            {
-                StartCoroutine(TakePhoto()); 
+    //     if (Input.GetKeyDown(KeyCode.Return))
+    //     {
+    //         if (_displayingPhoto)
+    //             HidePhoto(true);
+    //         else
+    //         {
+    //             StartCoroutine(TakePhoto()); 
 
-                _taskManager.CheckPhotoFish();
-            }      
-        }
+    //             _taskManager.CheckPhotoFish();
+    //         }      
+    //     }
         
-    }
+    // }
 
     public void ChangeRenderersStatus(bool status)
     {
