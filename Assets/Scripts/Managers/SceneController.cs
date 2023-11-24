@@ -8,6 +8,7 @@ public class SceneController : MonoBehaviour
     [Header("Scene Transition Settings")]
     [SerializeField] private CanvasGroup                _sceneTransitionOverlay;
     [SerializeField] private float                      _sceneTransitionOverlayFadeTime;
+    [SerializeField] private List<GameObject>           _controllerLineRenderers;
     [SerializeField] private List<SkinnedMeshRenderer>  _vrHandRenderers;
     [SerializeField] private bool                       _isFirstScene;
     [SerializeField] private bool                       _isLastLevel;
@@ -69,6 +70,11 @@ public class SceneController : MonoBehaviour
     {
         if (!_isFirstScene)
             foreach (SkinnedMeshRenderer mr in _vrHandRenderers) mr.enabled = false;
+        else
+        {
+            foreach (GameObject lr in _controllerLineRenderers) lr.SetActive(false);
+        }
+            
         
         _sceneTransitionOverlay.alpha = 0.0f;
         _sceneTransitionOverlay.gameObject.SetActive(true);
