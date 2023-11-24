@@ -2349,6 +2349,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.9735627, y: 7.88074, z: 34.397926}
   m_Center: {x: 0.007406712, y: 0.44704616, z: 0.33976173}
+--- !u!114 &161112213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 161112207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3fd6224f69df1d4ab05d4c7366378c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minAnimationStartTime: 0
+  _maxAnimationStartTime: 1
+  animationStartTime: 7
 --- !u!1001 &162424731
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8362,6 +8377,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.9735627, y: 7.88074, z: 34.397926}
   m_Center: {x: 0.007406712, y: 0.44704616, z: 0.33976173}
+--- !u!114 &526096308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526096302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3fd6224f69df1d4ab05d4c7366378c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minAnimationStartTime: 0
+  _maxAnimationStartTime: 1
+  animationStartTime: 0
 --- !u!1 &532070422
 GameObject:
   m_ObjectHideFlags: 0
@@ -11832,6 +11862,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.9735627, y: 7.88074, z: 34.397926}
   m_Center: {x: 0.007406712, y: 0.44704616, z: 0.33976173}
+--- !u!114 &711296396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711296390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3fd6224f69df1d4ab05d4c7366378c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minAnimationStartTime: 0
+  _maxAnimationStartTime: 1
+  animationStartTime: 4
 --- !u!1 &712225627
 GameObject:
   m_ObjectHideFlags: 0
@@ -28026,6 +28071,21 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 17b0e016f67431740802f68de412d998, type: 3}
   - {fileID: 8300000, guid: c668ad99959f3fc4abb93332e12ed291, type: 3}
   _timeBetweenSounds: 15
+--- !u!114 &1810889664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810889657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3fd6224f69df1d4ab05d4c7366378c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minAnimationStartTime: 0
+  _maxAnimationStartTime: 1
+  animationStartTime: 2
 --- !u!1 &1815574756
 GameObject:
   m_ObjectHideFlags: 0
